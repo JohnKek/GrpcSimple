@@ -1,0 +1,21 @@
+syntax = "proto3";
+package simple;
+option go_package = "./api/grpc;api";
+
+message Person {
+  optional int32 id = 1;
+  string name = 2;
+}
+
+message GetPersonRequest {
+  optional int32 id = 1;
+}
+
+message PersonResponse {
+  Person person = 1;
+}
+
+service PersonService {
+  rpc GetPerson(GetPersonRequest) returns (PersonResponse);
+  rpc AddPerson(Person) returns (PersonResponse);
+}
